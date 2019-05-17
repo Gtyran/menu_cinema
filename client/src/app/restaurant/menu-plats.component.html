@@ -1,0 +1,50 @@
+<div class="loading-shade" *ngIf="isLoading" fxLayoutAlign="center center">
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+</div>
+
+<div *ngIf="!isLoading" [style.padding-bottom.%]="10">
+
+    <!--LOCATION BACK-->
+    <div class="head">
+        <button class="btn-back" (click)="back()">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+        <span class="title">Restaurant</span>
+    </div>
+
+    <!--SEARCH -->
+    <div class="navigation--search" fxLayout="row" fxLayoutAlign="center center" [style.padding-top.%]="3">
+        <mat-form-field appearance="outline">
+            <mat-label>Rechercher un plat</mat-label>
+            <input matInput #search type="text" (keyup.enter)="searchPlat(search.value); search.value=''">
+            <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+    </div>
+
+    <!--FILTRAGE-->
+    <div fxLayout="row" fxLayoutAlign="end end" [style.padding-right.%]="10">
+        <div class="header item">
+            <span>Filtrer Par:&nbsp;</span>
+        </div>
+
+        <a class="item trier" (click)="sortPlats('popularité')">
+            <span>Meilleures ventes&nbsp;</span>
+        </a>
+
+        <a class="item trier" (click)="sortPlats('prix')">
+            <span>|&nbsp;Prix</span>
+        </a>
+    </div>
+
+    <!--LISTE DES plats-->
+    <span class="sous-title">{{affichage}}</span>
+    <app-plat [Plats]="listToShow"></app-plat>
+
+    <div class="pagination" fxLayout="row" fxLayoutAlign="center center">
+        <p-paginator *ngIf="!isLoading && listToShow.total_pages>1"
+                     [rows]="1" totalRecords={{listToShow.total_pages}}
+                     (onPageChange)="paginate($event)" [class]="">
+        </p-paginator>
+    </div>
+
+</div>

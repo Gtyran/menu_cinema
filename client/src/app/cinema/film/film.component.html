@@ -1,0 +1,112 @@
+<div class="loading-shade" *ngIf="isLoading" fxLayoutAlign="center center">
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+</div>
+
+<div *ngIf="!isLoading">
+  <div class="movie" *ngIf="movie">
+
+    <div class="movie--background">
+      <!--AFFICHE-->
+      <div class="image-rotator" [ngStyle]="{'background-image': 'url('+'https://image.tmdb.org/t/p/original'+movie.backdrop_path+')'}">
+      </div>    
+      <div class="vignette"></div>
+    </div>
+
+    <!--LOCATION BACK-->
+    <div class="movie__head">
+      <button class="btn-back" (click)="back()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <h2>{{movie.title}}</h2>
+    </div>
+
+    <div class="movie__body">
+        <br/>
+       <!--INFO DATE/TIME/VOTE_AVERAGE-->
+      <div class="movie--infos">
+        <p>
+          <mat-icon>date_range</mat-icon> {{movie.release_date | date: 'dd-MM-yyyy'}} •
+          <mat-icon>timer</mat-icon> {{movie.runtime}} minutes •
+          <mat-icon [ngClass]="{'mat-green': movie.vote_average >= 5, 'mat-red': movie.vote_average < 5}">star</mat-icon> {{movie.vote_average}}
+        </p>
+      </div>
+
+      <!--GENRE-->
+      <div class="movie--genre">
+        <ul>
+          <li *ngFor="let genre of movie.genres">
+            <a> {{genre.name}}&nbsp;</a>
+          </li>
+        </ul>
+      </div>
+      <br/>
+
+      <!--SYNOPSIE-->
+      <p class="movie--overview" >{{movie.overview}}</p>
+
+      <div class=" movie--actions" fxLayout="row" fxLayoutGap="30px">
+        <!--AJOUT DANS LE PANIER-->
+        <button mat-button (click)="pushMovieInPanier(movie)">
+          <mat-icon class="mat-teal">add_shopping_cart</mat-icon> Ajouter 
+        </button>
+
+        <!--PARTAGER-->
+        <button mat-button (click)="shareDialog(movie)">
+          <mat-icon class="mat-yellow">share</mat-icon> Partager
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+  <mat-tab-group class="movie__tab">
+
+    <!--CASTING-->
+    <mat-tab label="Casting">
+      <section class="movie--cast" *ngIf="casting ; else noCast">        
+        <mat-nav-list *ngFor="let person of casting">
+          
+          <a mat-list-item [routerLink]="['/person', person.id]">
+            
+              <!--<div class="icon-container" matListAvatar [ngStyle]="{'background-image': 'url('+'https://image.tmdb.org/t/p/original'+person.profile_path+')'}">
+                <mat-icon *ngIf="!person.profile_path" class="icon-person">person</mat-icon>
+              </div> -->
+            <h3 matLine>{{person.name}}</h3>
+            <p matLine>{{person.character}}</p>
+          </a>
+
+        </mat-nav-list>
+      </section>
+
+      <ng-template #noCast>
+        <i>Vide</i>
+      </ng-template>
+
+    </mat-tab>
+
+    <!--TRAILER-->
+    <mat-tab label="Bande Annonce">
+      <section class="movie--trailer" *ngIf="trailerUrl; else noTrailer">
+        <iframe width="560" height="315" [src]="trailerUrl" frameborder="0" allowfullscreen></iframe>
+      </section>
+
+      <ng-template #noTrailer>
+        <i>Pas de bande annonce</i>
+      </ng-template>
+
+    </mat-tab>
+
+    <!--FILM SIMILAIRE-->
+    <mat-tab label="Films Similaires">
+        <section class="movie--similar items" *ngIf="movieSimilar">
+            <app-list-film [movieList] = movieSimilar></app-list-film>
+        </section>
+    </mat-tab>
+   
+
+  </mat-tab-group>
+
+
+
+</div>

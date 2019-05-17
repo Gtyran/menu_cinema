@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--
+- idPlats List
+- idFilms List
+- Prix positive ou égale à 0
+-->
+
+<xs:schema version="1.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.ujf-grenoble.fr/l3m"
+           xmlns:comm="http://www.ujf-grenoble.fr/l3m"
+           elementFormDefault="qualified">
+
+    <xs:element name="commande" type="comm:Commande"/>
+    
+    <xs:complexType name="Commande">
+        <xs:sequence>
+            <xs:element name="date" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="id" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="idclient" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="idPlats" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+            <xs:element name="idFilms" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+            <xs:element name="prix" type="comm:Prix" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="adresseLivraison" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:simpleType name="Prix">
+        <xs:restriction base="xs:double">
+            <xs:minInclusive value="0.0" />
+        </xs:restriction>
+    </xs:simpleType>
+    
+    
+</xs:schema>

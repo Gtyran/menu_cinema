@@ -1,0 +1,94 @@
+<div class="loading-shade" *ngIf="isLoading" fxLayoutAlign="center center">
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+</div>
+  
+<div *ngIf="!isLoading" class="client-content" [style.padding-bottom.%]="10">
+        
+    <mat-card>
+
+        <!--HEADER-->
+        <mat-card-header>
+            <mat-card-title>Mes informations</mat-card-title>
+            <mat-card-subtitle>Cliquez sur les informations que vous voulez modifier. </mat-card-subtitle>
+        </mat-card-header>
+        <hr>
+
+         <!--CONTENT PROFILE-->
+        <mat-card-content>
+
+          <!--Formulaire d'e modification-->
+            <form #formulaire="ngForm" (ngSubmit)="modifierDonnees(clientModifier)" role="form">
+                <div fxLayoutAlign="center" fxLayout="column" >
+
+                    <div fxFill >     
+                                                
+                      <div fxFlex="40">
+                        <!--PHOTO-->                        
+                        <div class="file">
+
+                          <div class="photo">
+                            <img *ngIf="!clientModifier.photo" class="img_profile"  src="https://placehold.it/500x740">
+                          </div>         
+
+                        </div> 
+                      </div>         
+                        
+                      <div fxFlex="60">    
+                        <div  [style.padding-bottom.%]="7">
+                            <mat-label > <b>Fidélité : {{clientModifier.points}} pts </b></mat-label>
+                        </div>
+
+                        <div class="name-profile">                          
+                          <mat-form-field  floatLabel="always">
+                            <mat-label>Nom</mat-label>
+                            <input matInput placeholder="Nom" type="text" [(ngModel)]="clientModifier.nom" name="clientModifier.nom" required>
+                          </mat-form-field>
+                        </div>
+
+                        <div class="name-profile">
+                          <mat-form-field floatLabel="always">
+                            <mat-label>Prénom</mat-label>
+                            <input matInput placeholder="Prénom" type="text" [(ngModel)]="clientModifier.prenom" name="clientModifier.prenom" required>
+                          </mat-form-field>
+                        </div>                 
+                        
+                        <div class="uploadfile">  
+                          <input type="file" #Image accept="image/*" (change)="fileInput($event.target.files)" >
+                        </div> 
+                       
+                      </div> 
+                        
+                    </div>
+
+
+            <mat-form-field floatLabel="always">
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="Email" type="email"  pattern='^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$' 
+                [(ngModel)]="clientModifier.email" name="clientModifier.email" >
+            </mat-form-field>
+
+            <mat-form-field floatLabel="always">
+              <mat-label>Télephone</mat-label>
+              <input matInput placeholder="Télephone" type="tel" pattern="-?(\d+|\d+\.\d+|\.\d+)([eE][-+]?\d+)?" [(ngModel)]="clientModifier.tel" name="clientModifier.tel" >
+            </mat-form-field>
+
+            <mat-form-field floatLabel="always">
+              <mat-label>Adresse</mat-label>
+              <input matInput placeholder="Adresse" type="text" [(ngModel)]="clientModifier.adresse" name="clientModifier.adresse" >
+            </mat-form-field>
+            
+          </div>     
+
+          <mat-card-actions >
+            <div fxLayoutAlign="center">
+                <button mat-button type="submit" [disabled]="formulaire.invalid">Enregistrer les changements
+                    <mat-icon matSuffix>mode_edit</mat-icon>
+                </button>
+            </div>
+          </mat-card-actions>
+        </form>
+
+      </mat-card-content>
+
+    </mat-card>
+</div>

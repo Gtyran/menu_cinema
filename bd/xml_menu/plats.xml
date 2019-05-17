@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plats
+    xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+    xmlns:ns1='http://www.ujf-grenoble.fr/l3m' >
+    <plat>
+        <id>1</id>
+        <nom>Pizza Margherita</nom>
+        <type>Plat</type>
+        <prix>5.99</prix>
+        <ingredients>Tomate</ingredients>
+        <ingredients>Mozzarella</ingredients>
+    </plat>
+    <plat>
+        <id>2</id>
+        <nom>Pizza Vegan</nom>
+        <type>Plat</type>
+        <prix>10.00</prix>
+        <ingredients>Tomate</ingredients>
+        <ingredients>Champignons</ingredients>
+        <ingredients>Oignons</ingredients>
+        <ingredients>Olives</ingredients>
+    </plat>
+    <plat>
+        <id>3</id>
+        <nom>Pizza Orientale</nom>
+        <type>Plat</type>
+        <prix>8.00</prix>
+        <ingredients>Tomate</ingredients>
+        <ingredients>Mozzarella</ingredients>
+        <ingredients>Oignons</ingredients>
+        <ingredients>Merguez</ingredients>
+        <ingredients>Poivrons</ingredients>
+    </plat>
+    <plat>
+        <id>4</id>
+        <nom>Pizza Bufallo</nom>
+        <type>Plat</type>
+        <prix>10.00</prix>
+        <ingredients>Tomate</ingredients>
+        <ingredients>Mozzarella</ingredients>
+        <ingredients>Oignons</ingredients>
+        <ingredients>Boeuf</ingredients>
+        <ingredients>Poivrons</ingredients>
+    </plat>
+
+    <plat>
+        <id>5</id>
+        <nom>Salade Italienne</nom>
+        <type>Entree</type>
+        <prix>5.00</prix>
+        <ingredients>Salade</ingredients>
+        <ingredients>Tomate</ingredients>
+        <ingredients>Olives</ingredients>
+        <ingredients>Emmental</ingredients>
+    </plat>
+
+    <plat>
+        <id>6</id>
+        <nom>Salade Paysanne</nom>
+        <type>Entree</type>
+        <prix>5.00</prix>
+        <ingredients>Salade</ingredients>
+        <ingredients>Tomate</ingredients>
+        <ingredients>Jambon</ingredients>
+    </plat>
+
+    <plat>
+        <id>7</id>
+        <nom>Salade Méditerranéenne</nom>
+        <type>Entree</type>
+        <prix>7.00</prix>
+        <ingredients>Salade</ingredients>
+        <ingredients>Tomate</ingredients>
+        <ingredients>Thon</ingredients>
+        <ingredients>Oeuf</ingredients>
+        <ingredients>Oignons</ingredients>
+    </plat>
+
+    <plat>
+        <id>8</id>
+        <nom>Crêpe</nom>
+        <type>Dessert</type>
+        <prix>2.00</prix>
+        <ingredients>Chocolat</ingredients>
+    </plat>
+
+    <plat>
+        <id>9</id>
+        <nom>Gaufre</nom>
+        <type>Dessert</type>
+        <prix>2.00</prix>
+        <ingredients>Chocolat</ingredients>
+    </plat>
+
+    <plat>
+        <id>10</id>
+        <nom>Glace</nom>
+        <type>Dessert</type>
+        <prix>3.00</prix>
+        <ingredients>Fraise</ingredients>
+    </plat>
+
+    <plat>
+        <id>11</id>
+        <nom>Fruit</nom>
+        <type>Dessert</type>
+        <prix>1.50</prix>
+        <ingredients>Banane</ingredients>
+    </plat>
+
+
+    <plat>
+        <id>12</id>
+        <nom>Coca-Cola 33cl</nom>
+        <type>Boisson</type>
+        <prix>1.90</prix>
+        <ingredients>Cola</ingredients>
+    </plat>
+
+    <plat>
+        <id>13</id>
+        <nom>Coca-Cola 1,25L</nom>
+        <type>Boisson</type>
+        <prix>3.30</prix>
+        <ingredients>Cola</ingredients>
+    </plat>
+
+    <plat>
+        <id>14</id>
+        <nom>Eau 1,25L</nom>
+        <type>Boisson</type>
+        <prix>2.30</prix>
+        <ingredients>Eau</ingredients>
+    </plat>
+
+    <plat>
+        <id>15</id>
+        <nom>Eau 33cl</nom>
+        <type>Boisson</type>
+        <prix>1.20</prix>
+        <ingredients>Eau</ingredients>
+    </plat>
+
+    <plat>
+        <id>16</id>
+        <nom>Jus d'orange 33cl</nom>
+        <type>Boisson</type>
+        <prix>2.90</prix>
+        <ingredients>Jus</ingredients>
+    </plat>
+</plats>
+

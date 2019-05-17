@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<title>Connexion</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="assets/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+<!--===============================================================================================-->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+
+</head>
+<body>			
+	<div class="loading-shade" *ngIf="isLoading" fxLayoutAlign="center center">
+		<mat-spinner *ngIf="isLoading"></mat-spinner>
+	</div>
+
+	<div class="limiter"  *ngIf="!isLoading" [style.padding-bottom.%]="10">
+		<div class="container-login100">
+			<div class="wrap-login100">
+		<video playsinline autoplay muted loop poster="assets/images/login-background-3.jpg" id="bgvid">
+			<source src="/assets/videos/Fuego_de_Refineria.webm" type="video/webm">
+			<source src="/assets/videos/Fuego_de_Refineria.mp4" type="video/mp4">
+		</video>
+				<div class="login100-pic js-tilt" fxLayout="column" fxLayoutAlign="center center" fxShow.="true" fxHide.lt-md="true"   data-tilt >
+					<img src="assets/images/logo_MenuCinema.png" alt="IMG">
+				</div>
+	
+				<!--CONNEXION-->
+				<div class="login100-form validate-form" *ngIf="!this.authService.isAuth">
+					<span class="login100-form-title">
+						Connexion
+					</span>
+	
+					<!--COMPTE GIT/FB/TWITTER/GIT
+					<div *ngIf="!compteMail && choixbuttons">
+
+						<div *ngFor="let choix of choixbuttons">
+							<div class="container-login100-form-btn">
+								<button (click)="signIn(choix.name)" class="login100-form-btn" [ngStyle]="{'background-color' : choix.color}">
+									<i class="{{choix.icon}}"></i>&nbsp;&nbsp;{{choix.name}}
+								</button>
+							</div>
+						</div>
+
+						<div class="text-center p-t-30">							
+							<a class="txt3" (click)="compteMail=true" [ngStyle]="{'color' : '#afadad'}">
+								Retour
+								<i class="fa fa-long-arrow-left m-l-10" aria-hidden="true"></i>
+							</a>						
+						</div>
+
+					</div>-->
+					
+
+					<form>	
+						<span class="compte-title">
+							Mon Compte
+						</span>
+
+						<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+							<input class="input100" type="text" name="email" placeholder="Email" [(ngModel)]="email">
+							<span class="focus-input100"></span>
+							<span class="symbol-input100">
+								<i class="fa fa-envelope" aria-hidden="true"></i>
+							</span>
+						</div>
+	
+						<div class="wrap-input100 validate-input" data-validate = "Password is required">
+							<input class="input100" type="password" name="pass" placeholder="Password" [(ngModel)]="password">
+							<span class="focus-input100"></span>
+							<span class="symbol-input100">
+								<i class="fa fa-lock" aria-hidden="true"></i>
+							</span>
+						</div>
+						
+						<div class="container-login100-form-btn" >
+							<button class="login100-form-btn"  (click)="signIn('',email,password)" [ngStyle]="{'background-color' : '#3aa60b'}">
+								Se connecter
+							</button>
+						</div>
+
+						<div class="container-login100-form-btn">
+							<button class="login100-form-btn" (click)="signIn(choixbuttons.name)" [ngStyle]="{'background-color' : choixbuttons.color}">
+								<i class="{{choixbuttons.icon}}"></i>&nbsp;&nbsp;{{choixbuttons.name}}
+							</button>
+						</div>
+	
+						<div class="text-center p-t-12">
+							<span class="txt1">
+								Vous avez oublié votre
+							</span>
+							<a class="txt2" [ngStyle]="{'color' : '#afadad'}">
+								adresse mail / mot de passe?
+							</a>
+						</div>
+	
+						<div class="text-center p-t-50">
+							<a class="txt2" (click)="creeUnCompteAvecMail()" [ngStyle]="{'color' : '#afadad'}">
+								Créer un compte
+								<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+							</a>
+						</div>
+					</form>
+	
+
+				</div>
+
+				<!--DECONNEXION-->
+				<div class="login100-form validate-form" *ngIf="this.authService.isAuth">
+					<span class="login100-form-title">
+						Déconnexion
+					</span>
+
+					<div class="container-login100-form-btn">
+						<button (click)="logout()" class="login100-form-btn" [ngStyle]="{'background-color' : '#d80e0e'}">
+							Se déconnecter
+						</button>
+					</div>
+				</div>
+
+	
+			</div>
+		</div>
+	</div>			
+	
+<!--===============================================================================================-->	
+<script src="assets/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="assets/vendor/bootstrap/js/popper.js"></script>
+	<script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="assets/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="assets/vendor/tilt/tilt.jquery.min.js"></script>
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+<!--===============================================================================================-->
+	<script src="assets/js/main.js"></script>
+
+</body>
+</html>

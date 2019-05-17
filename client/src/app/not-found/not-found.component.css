@@ -1,0 +1,12 @@
+mat-card {
+    max-width: 500px;
+    margin: 2em auto;
+    text-align: center;
+    background: white;
+    color: black;    
+    height: fit-content;
+}
+/*
+.notfound{
+    height:-webkit-fill-available ;
+}*/

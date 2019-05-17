@@ -1,0 +1,30 @@
+<mat-card >
+  <!--ENTETE-->
+  <h1 mat-dialog-title>Partager
+  </h1>
+  <hr>
+  <!--BUTTON COPY/OK-->
+  <div mat-dialog-content>
+    <!--LIEN VERS FACEBOOK & TWITTER-->
+    <div class="share-buttons"  fxLayout="row" fxLayoutAlign="space-evenly center">
+      <a href="https://www.facebook.com/sharer/sharer.php?u={{data.url}}">Facebook</a>
+      <a href="https://twitter.com/intent/tweet?text={{data.original_title}}%20on%20&url={{data.url}}">Twitter</a>
+    </div>
+
+    <!--VALUE DU LIEN-->
+    <div class="link">
+      <mat-form-field>
+        <input id="inputId" matInput [value]="data.url">
+      </mat-form-field>
+    </div>
+
+  </div>
+  <hr>
+
+  <!--BUTTON COPY/OK-->
+  <div mat-dialog-actions  fxLayout="row" fxLayoutAlign="space-evenly center">
+    <button mat-button (click)="copyLink()" cdkFocusInitial>Copier le lien</button>
+    <button mat-button (click)="onNoClick()">OK</button>
+  </div>
+
+</mat-card>

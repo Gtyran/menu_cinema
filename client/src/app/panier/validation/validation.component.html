@@ -1,0 +1,347 @@
+<head>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
+
+
+<div class="loading-shade" *ngIf="isLoading" fxLayoutAlign="center center">
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+</div>
+  
+
+<div class="body" *ngIf="!isLoading">
+
+  <!--HEADER-->
+  <h1 >{{tittle | uppercase}}</h1>
+  <hr>
+
+  <!--Formulaire d'inscription-->
+  <mat-horizontal-stepper linear labelPosition="bottom" #stepper class="valider">
+
+    <!-----------------------------------STEP 1 : VOTRE PANIER----------------------------------------->
+
+    <mat-step>        
+      <ng-template matStepLabel >Panier</ng-template>                    
+      <span class="sous-tittle"  fxLayout="row" fxLayoutAlign="center center" >VOTRE PANIER</span>
+
+       <!-----------------------------------ENTETE----------------------------------------->
+
+        <div fxFill class="header">
+          <span fxFlex="20">Produit</span>
+          <span fxFlex="72">Description</span>
+          <span fxFlex="7">Prix</span>
+        </div>
+        <hr>        
+        
+        <!-----------------------------------FILMS LIST----------------------------------------->
+
+        <div *ngIf="listFilms.length > 0">         
+          <!--ACHAT FILM-->
+          <p-orderList [value]="listFilms" >
+
+            <ng-template let-film let-i="index" pTemplate="item" >
+                <div class="ui-helper-clearfix" >
+                  <table >
+                    <tr>
+                      <!--IMAGE-->
+                      <td>
+                        <img src="https://image.tmdb.org/t/p/w500{{film.photo}}"  class="image" width="100">
+                      </td>
+
+                      <td class="info">
+                        <table style="width: 100%">
+                          <tr >
+                            <td >
+                                <!--NOM / PRIX-->
+                                <div class="details-nom">{{film.nom}} 
+                                  <span style="float: right; font-size: 13px;font-weight: bolder;" >{{film.prix | currency:'EUR'}}</span> 
+                                </div>                                                                   
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td> <!--DELETE BUTTON-->
+                                <div fxLayout="row" fxLayoutAlign="end center" class="trash" >
+                                  <button class="butt" (click)="deleteF(i)">  <i class="pi pi-times" style="padding-left: 3px;font-size:20px"></i> </button>
+                                </div>
+                            </td>
+                          </tr> 
+                        </table> 
+                      </td>
+
+                    </tr>
+                  </table>    
+                </div>
+                
+                <hr>
+            </ng-template>     
+
+          </p-orderList>
+        </div>
+        
+        <!----------------------------------------------PLATS LIST --------------------------------------------->        
+
+        <!--ACHAT Plat-->
+        <div *ngIf="listPlats.length > 0">
+          <p-orderList [value]="listPlats" >
+  
+            <ng-template let-plat let-i="index" pTemplate="item" >
+                <div class="ui-helper-clearfix" >
+                  <table >
+                    <tr>
+                      <!--IMAGE-->
+                      <td>
+                        <img src="assets/images/menu/{{plat.id}}.png"  class="image" width="100" height="130">
+                      </td>
+
+                      <td class="info">
+                        <table style="width: 100%">
+                          <tr >
+                            <td >
+                                <!--NOM / QUANTITE-->
+                                <div class="details-nom">{{plat.nom}}
+                                  <span style="float: right; font-size: 13px;font-weight: bolder;" >{{plat.prix * plat.quantite | currency:'EUR'}} </span> 
+                                </div> 
+                                <span style="padding-left: 2px;font-size:10px;color: gray;">Quantité {{plat.quantite}}</span>                                                                
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td> <!--DELETE BUTTON-->
+                                <div fxLayout="row" fxLayoutAlign="end center" class="trash" >
+                                  <button class="butt" (click)="deleteP(i)">  <i class="pi pi-times" style="padding-left: 3px;font-size:20px"></i> </button>
+                                </div>
+                            </td>
+                          </tr> 
+                        </table> 
+                      </td>
+
+                    </tr>
+                  </table>    
+                </div>
+
+                <hr>
+            </ng-template>     
+  
+          </p-orderList>  
+        </div>           
+
+        <!---------------------------------------------------TOTAL----------------------------------------------------->
+
+        <!--TOTAL-->
+        <div class="total">
+          <!--POINT-->
+          <div class="point">
+            <span style="float: left">Vous avez actuellement {{points}} points</span>&nbsp;&nbsp;
+            <mat-slide-toggle color="warn" (click)="calculTotal()" *ngIf="points >= 10">les utilisé</mat-slide-toggle>
+          </div>
+
+          <div style="font-size: smaller;color: #7f7878;"> sous-total : <span style="float: right;">{{total | currency:'EUR'}}</span> </div>
+          <div> Total : <span style="float: right">{{totalFinal | currency:'EUR'}}</span> </div>
+
+        </div> 
+
+        <!--SUIVANT-->
+        <div style="padding-top: 5%" fxLayout="row" fxLayoutAlign="end end">
+            <button mat-button matStepperNext (click)="verificationPanier()" ><span>VALIDER LE PANIER</span><mat-icon>navigate_next</mat-icon></button>
+        </div>
+    </mat-step>
+
+
+    <!---------------------------------STEP 2 : Informations Client-------------------------------------->
+
+
+    <mat-step [stepControl]="firstFormGroup">                
+      <form [formGroup]="firstFormGroup">
+          <ng-template matStepLabel>Informations Client</ng-template>
+          <span class="sous-tittle"  fxLayout="row" fxLayoutAlign="center center" >INFORMATIONS CLIENT</span>
+          
+          <table class="example-full-width" cellspacing="3">
+            <tr>                    
+              <td><!--Nom-->
+                  <mat-form-field class="example-full-width" float="always">
+                      <mat-label>Nom</mat-label>
+                          <input matInput type="text" id="nom" name="nom" [(ngModel)]="user.nom" 
+                          placeholder="Nom" formControlName="nom" required/>
+                      <mat-error *ngIf="!firstFormGroup.controls['nom'].valid && firstFormGroup.controls['nom'].touched">
+                          Veuillez entrer un nom
+                      </mat-error>
+                  </mat-form-field>
+              </td>
+
+              <td><!--Prénom-->
+                  <mat-form-field class="example-full-width" float="always">
+                      <mat-label>Prénom</mat-label>
+                        <input matInput type="text" id="prenom" name="prenom" [(ngModel)]="user.prenom"
+                          placeholder="Prénom" formControlName="prenom" required/>
+                      <mat-error *ngIf="!firstFormGroup.controls['prenom'].valid && firstFormGroup.controls['prenom'].touched">
+                          Veuillez entrer un prénom
+                      </mat-error>
+                  </mat-form-field>
+              </td>
+            </tr>
+          </table>    
+
+          <p><!--Tel-->            
+              <mat-form-field class="example-full-width" floatLabel="always">
+                  <mat-label>Télephone</mat-label>
+                  <input matInput type="text" id="tel" name="tel" [(ngModel)]="user.tel"
+                      placeholder="Télephone"  formControlName="tel" required/>
+                      <mat-error *ngIf="!firstFormGroup.controls['tel'].valid && firstFormGroup.controls['tel'].touched">
+                        Veuillez entrer un numéro téléphone
+                    </mat-error>
+              </mat-form-field>
+          </p>       
+                
+          <p><!--Email-->            
+              <mat-form-field class="example-full-width" floatLabel="always">
+                  <mat-label>Email</mat-label>
+                  <input matInput type="email" id="email" name="email" pattern='^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'
+                          placeholder="Email" [(ngModel)]="user.email" formControlName="email" required/>
+                  <mat-error *ngIf="!firstFormGroup.controls['email'].valid && firstFormGroup.controls['email'].touched">
+                      l'adresse email est invalide.
+                  </mat-error>
+              </mat-form-field>
+          </p> 
+
+          <p>
+            <!--ADRESSE CLIENT-->                            
+            <mat-form-field class="example-full-width" floatLabel="always">
+                <mat-label>Adresse de livraison</mat-label>
+                <input matInput type="text" id="adresse" placeholder="Adresse" name="adresse" 
+                        formControlName="adresse" [(ngModel)]="user.adresse" />
+            </mat-form-field>                     
+          </p>
+
+          <p>
+            <!--RUE-->                            
+            <mat-form-field class="example-full-width" floatLabel="always">
+                <mat-label>Rue</mat-label>
+                <input matInput type="text" placeholder="Rue" name="rue"
+                        formControlName="rue"  [(ngModel)]="adresse.rue" />
+            </mat-form-field>                     
+          </p>
+
+          <table class="example-full-width" cellspacing="3">
+            <tr>                    
+              <td><!--Code Postal-->
+                <mat-form-field class="example-full-width" floatLabel="always">
+                  <mat-label>Code postal</mat-label>
+                      <input matInput #postalCode  type="text" pattern="[0-9]{5}" maxlength="5" name="codepostal" 
+                      [(ngModel)]="adresse.codePostal" placeholder="Code postal" formControlName="codepostal" />
+                  <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
+                </mat-form-field>
+              </td>
+
+              <td><!--Ville-->
+                  <mat-form-field class="example-full-width" floatLabel="always">
+                      <mat-label>Ville</mat-label>
+                      <input matInput type="text" id="ville" name="ville" [(ngModel)]="adresse.ville"
+                          placeholder="ville" formControlName="ville" />
+                  </mat-form-field>
+              </td>
+            </tr>
+          </table>    
+
+          <p><!--Etage/info conplémentaire-->            
+            <mat-form-field class="example-full-width" floatLabel="always">
+                <mat-label>Complémentaire</mat-label>
+                <input matInput type="text" name="compl"
+                [(ngModel)]="adresse.compl" placeholder="Compl" formControlName="compl" />
+            </mat-form-field>
+          </p> 
+                
+          <!--PRECEDENT/SUIVANT-->
+          <div style="padding-top: 5%" fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="50">
+              <button mat-button matStepperPrevious><mat-icon>navigate_before</mat-icon><span style="padding-right: 30px;">RETOUR</span></button>      
+              <button mat-button matStepperNext (click)="concatenation()" [disabled]="!firstFormGroup.valid "><span>SUIVANT</span><mat-icon>navigate_next</mat-icon></button>
+          </div>
+          
+      </form>
+    </mat-step>
+
+
+
+    <!---------------------------------STEP 3-------------------------------------->
+        
+
+    <mat-step>                
+        <form [formGroup]="secondFormGroup">
+            <!--COORDONNEE BANCAIRE-->
+            <ng-template matStepLabel >Paiement</ng-template>   
+            <span class="sous-tittle"  fxLayout="row" fxLayoutAlign="center center" >PAIEMENT BANCAIRE</span>
+            
+            <div style="font-size: 30px;" fxLayout="row" fxLayoutAlign="space-around center">              
+              <div *ngFor="let icon of itemCarte"   >
+                  <div ><i class="{{icon.name}}" ></i></div>              
+              </div>
+            </div>
+                       
+            <p>              
+              <mat-form-field style="width: 210px;padding-top: 5%" floatLabel="always">
+                  <mat-label>Numéro de la carte</mat-label>
+                  <input matInput type="number" placeholder="Numero de la carte" 
+                  name="numero" formControlName="numero" pattern='[0-9\s]{16,}'/>
+                <mat-error *ngIf="!secondFormGroup.controls['numero'].valid && secondFormGroup.controls['numero'].touched">
+                    minimum 16 chiffres
+                </mat-error>
+              </mat-form-field>  
+            </p>
+                
+            <!--DATE EXPIRATION-->
+            <table>
+              <tr>                    
+                <td><!--Mois-->
+                  <mat-form-field style="width: 100px;" floatLabel="always">
+                      <mat-label>Mois</mat-label>
+                      <mat-select name="mois">
+                        <mat-option *ngFor="let m of mois" [value]="m" >
+                          {{m}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>        
+                </td>
+  
+                <td><!--Ville-->
+                  <mat-form-field  style="width: 100px;" floatLabel="always">
+                    <mat-label>Année</mat-label>
+                    <mat-select name="annee">
+                      <mat-option *ngFor="let a of annee" [value]="a">
+                        {{a}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </td>
+              </tr>
+            </table>    
+    
+            <p><!--CCV-->
+              <mat-form-field style="width: 60px;" floatLabel="always">
+                  <mat-label>CVC</mat-label>
+                  <input matInput type="number" name="crypto" pattern='[0-9]{3}'
+                      placeholder="Cryptogramme" formControlName="crypto" />
+                    <mat-error *ngIf="!secondFormGroup.controls['crypto'].valid && secondFormGroup.controls['crypto'].touched">
+                      3 chiffres
+                  </mat-error>
+              </mat-form-field>
+            </p>
+            
+            <!--SUIVANT-->
+            <div style="padding-top: 5%" fxLayout="row" fxLayoutAlign="end end">
+                <button mat-button matStepperPrevious><mat-icon>navigate_before</mat-icon><span style="padding-right: 30px;" >RETOUR</span></button>      
+                <button mat-button matStepperNext (click)="finaliser()" [disabled]="!secondFormGroup.valid "><span>FINALISER</span><mat-icon>navigate_next</mat-icon></button>
+            </div>
+
+        </form>
+    </mat-step>
+
+
+  </mat-horizontal-stepper>
+  
+</div>
+
+<p-dialog header="Facture de la commande" [(visible)]="showFacture" [responsive]="true" showEffect="fade"
+          [style]="{width: '900px'}" [positionTop]="70" (onHide)="onDialogHide()">
+    <app-facture-client (onDialogHide)="onDialogHide()" [factureXML]="factureToInject"
+                        *ngIf="showFacture"></app-facture-client>
+</p-dialog>
+  

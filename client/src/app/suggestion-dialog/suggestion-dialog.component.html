@@ -1,0 +1,50 @@
+<mat-card>
+
+    <!--HEADER-->
+    <mat-card-header>
+        <mat-card-title >{{titreDialog | uppercase}}</mat-card-title>
+    </mat-card-header>
+    <hr>
+
+    <mat-card-content>
+      <!--CAROUSEL-->
+      <div class="carousel-content">
+            <p-carousel headerText="Des suggestions pour vous" [value]="listSuggestion" [numVisible]="3" [pageLinks]="7"
+             [autoplayInterval]="20000" [circular]="true"
+            [responsive]="true">
+
+                <ng-template let-suggestion pTemplate="item">
+                  
+                    <div class="item-container" fxLayout="column" fxLayoutAlign="space-around center" >                     
+                        <a class="film"  *ngIf="data.suggest === 'film'">
+                            <img [src]="suggestion.photo" >
+                        </a> 
+
+                        <a class="plat" *ngIf="data.suggest === 'plat'">
+                            <img  src="https://image.tmdb.org/t/p/w500{{suggestion.poster_path}}" >
+                        </a> 
+                              
+                        <div class="info" fxFill fxLayout="row" fxLayoutAlign=" center none">
+                            <span fxFlex="80" style="padding-left:5%" *ngIf="data.suggest === 'film'">{{suggestion.nom}}</span>
+                            <span fxFlex="80" style="padding-left:5%" *ngIf="data.suggest === 'plat'">{{suggestion.original_title}}</span>
+
+                            <span *ngIf="data.suggest === 'film'" class="prix">{{suggestion?.prix | currency:'EUR'}}</span>
+                           
+                            <button fxFlex="20" mat-icon-button matTooltip="ajout dans le panier"  (click)="pushInPanier(suggestion)" >
+                                <mat-icon class="mat-teal">add_shopping_cart</mat-icon>
+                            </button>     
+                        </div>
+                        
+                    </div>
+                
+                </ng-template>
+          </p-carousel>
+      </div>
+   
+    </mat-card-content>
+    
+</mat-card>
+        
+        
+
+    

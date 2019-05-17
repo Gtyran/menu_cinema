@@ -1,0 +1,40 @@
+@import '../../assets/css/palette';
+
+mat-card{
+    background: $white;
+    color: $primary;
+}
+
+.mat-dialog-content {
+    text-align: center;
+    width: 100%;
+    padding: 0;
+    margin : 0;
+    a {
+        &:hover {
+            opacity: 0.5;
+        }
+        cursor: pointer;
+        text-decoration: none;
+        color: $primary;
+        outline: 0;
+    }
+}
+.mat-dialog-actions {
+    justify-content: center;
+}
+
+.mat-button{    
+    cursor: pointer;
+    color : $black;
+}
+
+.share-buttons {
+    justify-content: space-between;
+}
+
+.mat-dialog-title {
+    text-align: center;
+    color : $black;
+}
+

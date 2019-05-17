@@ -1,0 +1,98 @@
+@import '../../../assets/css/palette';
+
+.body {
+  display: flex;
+  position: relative;
+  margin: 0;
+  margin-top: 15px;
+  height: auto;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 0 10%;
+  @media only screen and (min-width: 731px) {
+    min-height: 500px;
+  }
+}
+
+mat-card {
+  max-width: 200px;
+  padding: 0;
+}
+
+mat-card:hover {
+  box-shadow: 2px 0 10px lightcyan;
+}
+
+mat-card-content {
+  background: $white;
+}
+
+.image {
+  width: 100%;
+  overflow: hidden;
+  min-height: 300px;
+  cursor: pointer;
+
+  @media only screen and (min-width: 731px) {
+    background-position: initial;
+  }
+}
+
+.info {
+  color: $black;
+  padding: 2px 5px 0px 5px;
+  font-weight: 550;
+  font-size: 16px;
+  min-height: 73px;
+
+  .shop {
+    color: $teal;
+    padding: 0;
+    button {
+      padding: 0;
+      margin: 0;
+      background: none;
+      border: none;
+    }
+    mat-icon {
+      font-size: xx-large;
+      margin-right: 7px;
+    }
+  }
+
+  .titreF {
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  mat-icon {
+    font-size: x-large;
+
+  }
+}
+
+.movies-container {
+  margin: 15px 15px 15px 15px;
+  :first-child {
+    margin-left: 0;
+    margin-right: 0
+  }
+  :last-child {
+    margin-left: 0;
+    margin-right: 0
+  }
+
+}
+
+.mat {
+  &-green {
+    color: $green;
+  }
+  &-red {
+    color: $primary;
+  }
+  &-teal {
+    color: $teal;
+  }
+}

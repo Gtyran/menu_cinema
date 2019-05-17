@@ -1,0 +1,119 @@
+@import '../../../assets/css/palette';
+
+.body {
+    display: flex;
+    position: relative;
+    height: auto;
+    flex-wrap: wrap;
+    justify-content: space-around;    
+    padding : 0;
+    margin: 2% 10%;
+    @media only screen and (max-width: 675px) {
+        justify-content: space-around;    
+    }
+}
+
+mat-card{
+    width: 400px;
+    padding: 2% 2%;   
+    margin-bottom: 5%; 
+    min-height: 313px;
+    background: $white;
+    cursor: unset; 
+    @media only screen and (max-width: 1500px) {
+        width: 370px;
+     }
+    @media only screen and (max-width: 1400px) {
+       width: 350px;
+    }    
+    @media only screen and (max-width: 1320px) {
+        width: 300px;
+     }
+    @media only screen and (max-width: 1120px) {
+        width: 250px;
+     }
+     @media only screen and (max-width: 950px) {
+        width: 230px;
+     }
+     @media only screen and (max-width: 870px) {
+        width: 200px;
+     }
+     @media only screen and (max-width: 770px) {
+        width: 250px;
+     }
+     @media only screen and (max-width: 740px) {
+        width: 270px;
+     }
+     @media only screen and (max-width: 675px) {
+        width: 450px;
+     }
+     @media only screen and (max-width: 588px) {
+        width: 400px;
+     }
+     @media only screen and (max-width: 512px) {
+        width: 300px;
+     }
+     @media only screen and (max-width: 320px) {
+        width: 250px;
+     }
+}
+
+
+.image{
+    width: 100%;
+    overflow: hidden;
+    height: 200px;
+}
+
+.plat-container{
+    margin:  15px 15px 15px 15px;
+    :first-child{
+        margin-left: 0;
+        margin-right: 0
+    }
+    :last-child{
+        margin-left: 0;
+        margin-right: 0
+    }
+
+}   
+
+.info {
+    color: $black;
+    padding : 2px 5px 2px 5px;
+   // min-height: 73px;    
+    font-weight: lighter;
+    align-content: stretch;
+
+    .details{
+        font-size: 16px;     
+        padding: 0;
+        padding-bottom: 10px;   
+        button{            
+            color: $teal;  
+            float: right;
+            background: none;
+            border: none;
+            margin-right: 7%;           
+            mat-icon{
+                font-size: xx-large;
+                //margin-right: 7px ; 
+                cursor: pointer;
+            }
+        }
+        .prix{
+            color: #717070;
+        }
+    }
+}
+
+.ingredient-item {
+    display: inline-table;
+
+    span{
+        display: inline;       
+        margin-left: 1px;
+        margin-right: 3px;
+        color: #666;           
+    }
+}

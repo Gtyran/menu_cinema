@@ -1,0 +1,45 @@
+<div class="body" *ngIf="movieList; else noData">
+
+    <div class="movies-container" *ngFor="let movie of movieList?.results">
+        <mat-card>
+            <mat-card-content>
+
+                <!--AFFICHE-->
+                <div class="image" (click)='ficheFilm(movie.id)'>
+                    <img *ngIf="movie.poster_path" class="ui tiny image"
+                         src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}">
+                    <img *ngIf="!movie.poster_path" class="ui tiny image" src="https://placehold.it/500x740">
+                </div>
+
+                <!--NOM/VOTE AVERAGE-->
+                <div class="info">
+                    <div class="titreF" (click)='ficheFilm(movie.id)'>
+                        {{movie.title}}
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <div class="vote" fxLayoutAlign="start start">
+                            {{movie.vote_average}}
+                            <mat-icon
+                                    [ngClass]="{'mat-green': movie.vote_average >= 5, 'mat-red': movie.vote_average < 5}">
+                                star
+                            </mat-icon>
+                        </div>
+
+                        <div class="shop" style="text-align: right;" fxLayoutAlign="end end">
+                            <!--AJOUT DANS LE PANIER-->
+                            <button (click)="pushMovieInPanier(movie)">
+                                <mat-icon class="mat-teal">add_shopping_cart</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </mat-card-content>
+        </mat-card>
+
+    </div>
+</div>
+
+<ng-template #noData>
+    <i>Vide</i>
+</ng-template>

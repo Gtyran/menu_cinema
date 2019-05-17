@@ -1,0 +1,33 @@
+body .ui-carousel {
+    background-color : transparent!important;
+}
+body .ui-carousel .ui-carousel-header {
+    color: white!important;
+    padding: 0!important;
+    border: 1px solid transparent!important;
+    background-color : transparent!important;
+    margin: 0; 
+}
+body .ui-carousel .ui-carousel-header .ui-carousel-header-title {
+    font-size: 22px!important;  
+    font-weight: lighter!important;
+}
+body .ui-carousel .ui-carousel-viewport {
+    border: 1px solid transparent!important;
+    color: white!important;
+    padding: 0!important;
+    background-color : transparent!important;
+}
+body .ui-carousel .ui-carousel-viewport .ui-carousel-items .ui-carousel-item {
+    border: 1px solid transparent!important;
+}
+  
+body .ui-carousel .ui-carousel-button {
+    color: white!important;
+}
+body .ui-carousel .ui-carousel-page-links {
+    margin: 0.125em 0.5em;
+}
+body .ui-carousel .ui-carousel-page-links .ui-carousel-page-link {
+    color: white!important;
+}

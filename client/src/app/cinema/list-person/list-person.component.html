@@ -1,0 +1,29 @@
+<div class="body" *ngIf="personList; else noData">
+    <span>{{affResPerson}}</span>
+    <div class="movies-container" *ngFor="let person of personList?.results">
+        <mat-card>
+            <mat-card-content>
+
+                <!--AFFICHE-->
+                <div class="image" [routerLink]="['/person', person.id]">
+                    <img *ngIf="person.profile_path" class="ui tiny image"
+                         src="https://image.tmdb.org/t/p/w185/{{person.profile_path}}" alt="profile">
+                    <img *ngIf="!person.profile_path" class="ui tiny image" src="https://placehold.it/500x740">
+                </div>
+
+                <!--NOM -->
+                <div class="info">
+                    <div class="titreF" [routerLink]="['/person', person.id]">
+                        {{person.name}}
+                    </div>
+                </div>
+
+            </mat-card-content>
+        </mat-card>
+
+    </div>
+</div>
+
+<ng-template #noData>
+    <i>Vide</i>
+</ng-template>

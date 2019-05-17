@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<xs:schema version="1.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="http://www.ujf-grenoble.fr/l3m"
+           targetNamespace="http://www.ujf-grenoble.fr/l3m"
+           xmlns:pls="http://www.ujf-grenoble.fr/l3m"
+           elementFormDefault="qualified">
+    
+    <xs:include schemaLocation="Plat.xsd"/>
+    
+    <xs:element name="plats" type="pls:Plats"/>
+    
+    <xs:complexType name="Plats">
+        <xs:sequence>
+            <xs:element name="plat" type="Plat" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    
+    
+</xs:schema>
+
+

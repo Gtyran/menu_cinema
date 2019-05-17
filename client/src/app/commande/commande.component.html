@@ -1,0 +1,95 @@
+<div class="loading-shade" *ngIf="isLoading" fxLayoutAlign="center center">
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+</div>
+
+
+<p-dataView #dv [value]="commandes" [paginator]="true" [rows]="commandes?.length" paginatorPosition="bottom"
+            [filterBy]="filterBy" emptyMessage="Aucune commande trouvée" [sortField]="sortField"
+            [sortOrder]="sortOrder" [alwaysShowPaginator]="false" *ngIf="!isLoading">
+
+    <p-header>
+        <div class="ui-helper-clearfix">
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-4">
+                    <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Trier par"
+                                (onChange)="onSortChange($event)" [style]="{'min-width':'140px'}"></p-dropdown>
+                </div>
+                <div class="ui-g-6 ui-md-4 filter-container">
+                    <div style="position:relative">
+                        <input type="search" pInputText placeholder="Chercher par"
+                               (keyup)="dv.filter($event.target.value)">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </p-header>
+    <ng-template let-commande pTemplate="listItem">
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <mat-card>
+                <mat-card-content>
+                    <div class="ui-g" style="padding: 2em;border-bottom: 1px solid #d9d9d9">
+
+                        <div class="ui-g-12 ui-md-8">
+                            <div class="ui-g">
+                                <div class="ui-g-6 ui-sm-6"><b>Numéro de commande: </b></div>
+                                <div class="ui-g-6 ui-sm-6">{{commande.id}}</div>
+
+                                <div class="ui-g-6 ui-sm-6"><b>Date de la commande: </b></div>
+                                <div class="ui-g-6 ui-sm-6">{{commande.date | date:'medium'}}</div>
+
+                                <div class="ui-g-6 ui-sm-6"><b>Montant de la commande: </b></div>
+                                <div class="ui-g-6 ui-sm-6">{{commande.total | currency:'EUR'}}</div>
+
+                                <div class="ui-g-6 ui-sm-6"><b>Adresse de livraison: </b></div>
+                                <div class="ui-g-6 ui-sm-6">{{commande.adresseLivraison}}</div>
+                            </div>
+                        </div>
+                        <p-button label="Details" (click)="selectCommande($event, commande)"></p-button>&nbsp;
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </ng-template>
+</p-dataView>
+
+
+<p-dialog header="Details de la commande" [(visible)]="displayDialog" [responsive]="true" showEffect="fade"
+          [style]="{width: '500px'}" [positionTop]="70" (onHide)="onDialogHide()">
+    <div class="ui-g" *ngIf="selectedCommande">
+        <!--Films de la commande-->
+        <div class="ui-g-12"><h3>Films:</h3></div>
+        <div class="ui-g-12 row" *ngFor="let f of films">
+            <div class="ui-g-3 ui-sm-3">
+                <!-- url("https://image.tmdb.org/t/p/original/yXybBEC45p84D0Ky7GmQQYrclVr.jpg") -->
+                <img width="100%" src="https://image.tmdb.org/t/p/original{{f.poster_path}}">
+            </div>
+            <div class="ui-g-2 ui-sm-2"><b>Titre:</b></div>
+            <div class="ui-g-7 ui-sm-7">{{f.title}}</div>
+
+            <div class="ui-g-2 ui-sm-2"><b>Prix:</b></div>
+            <div class="ui-g-7 ui-sm-7">{{forfaitFilm | currency: 'EUR'}}</div>
+
+            <div class="ui-g-2 ui-sm-2"><b>Sortie:</b></div>
+            <div class="ui-g-7 ui-sm-7">{{f.release_date}}</div>
+        </div>
+        <hr>
+        <!--Plats de la commande-->
+        <div class="ui-g-12"><h3>Plats:</h3></div>
+        <div class="ui-g-12 row" *ngFor="let p of plats; let i = index">
+            <div class="ui-g-3 ui-sm-3">
+                <img width="100%" class="ui tiny image" src="assets/images/menu/{{p?.id}}.png">
+            </div>
+            <div class="ui-g-2 ui-sm-2"><b>Nom:</b></div>
+            <div class="ui-g-7 ui-sm-7">{{p?.nom}}</div>
+
+            <div class="ui-g-2 ui-sm-2"><b>Type:</b></div>
+            <div class="ui-g-7 ui-sm-7">{{p?.type}}</div>
+
+            <div class="ui-g-2 ui-sm-2"><b>Prix:</b></div>
+            <div class="ui-g-7 ui-sm-7">
+                {{p?.prix | currency: 'EUR'}}
+                <b *ngIf="platsArray[i].quantite > 1">x{{platsArray[i].quantite}}</b>
+            </div>
+        </div>
+    </div>
+</p-dialog>

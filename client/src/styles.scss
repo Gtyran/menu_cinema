@@ -1,0 +1,263 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '//assets/css/palette';
+
+@import '//assets/css/custom-carousel';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
+.info-snackbar {
+    background: #17a2b8;
+    font-size: large;
+    font-weight: lighter;
+    color : white;
+}
+
+.success-snackbar {
+    font-size: large;
+    font-weight: lighter;
+    color : white;
+    background: #4ec531;
+}
+
+.error-snackbar {
+    background: #d72416;
+    font-size: large;
+    font-weight: lighter;
+    color : white;
+}
+
+.warn-snackbar {
+    background: #ffc107;
+    font-size: large;
+    font-weight: lighter;
+    color : white;
+}
+
+body a {
+    color : $white;
+}
+
+body a:hover{
+    color : $white;
+    text-decoration: none;
+}
+
+.custom-dialog-container .mat-dialog-container {
+    padding :0;    
+    margin : 0;
+    width : 300px;     
+}
+
+.custom-dialog-suggestion .mat-dialog-container {
+    width : 800px;   
+    background: white;
+    padding :0;    
+    margin : 0;
+}
+
+.custom-dialog-inscription .mat-dialog-container {
+    width : 600px;   
+    background: white;
+    padding :0;    
+    margin : 0;
+}
+
+.custom-dialog-inscription .mat-form-field-infix {
+    width : 100%;   
+}
+
+.mat-form-field {
+    .mat-input-element {
+        color: slategray;
+    }
+    .mat-form-field-label {
+        color: slategray;
+    }
+    .mat-form-field-underline {
+        background-color: slategray;
+    }
+    /*  .mat-form-field-ripple {
+        background-color: slategray;
+    }*/
+    .mat-form-field-required-marker {
+        color: slategray;
+    }
+}
+
+.mat-horizontal-stepper-header::after,.mat-horizontal-stepper-header::before,.mat-stepper-horizontal-line{
+    border-top-color:rgba(0,0,0,.12)
+}
+
+.mat-step-header {
+    .mat-step-label.mat-step-label-active {
+        color: #135797;
+    }
+}
+
+.mat-stepper-horizontal{
+    background-color:white;
+}
+
+.mat-horizontal-stepper-header{
+     .mat-step-icon{
+        background-color:grey
+    }
+    .mat-step-icon-selected{
+        background-color:$primary;
+    }
+}
+
+.mat-horizontal-content-container {
+    padding-bottom: 0;
+    height: 300px;
+}
+
+.valider {
+    .mat-horizontal-content-container {
+        height: auto!important;
+        padding-bottom: 10%;
+    }
+    .ui-orderlist .ui-orderlist-list {
+        height: auto!important;
+        max-height: none!important;
+        width: 100%!important;
+        border :none!important;
+        margin-bottom: 0!important;   
+    }
+    .ui-orderlist-list-container {
+        width: 100%!important;
+    }    
+}
+
+.mat-select-panel {
+    background: white;    
+}
+
+.mat-option:hover {
+    background: rgba(255,255,255,.12);
+}
+
+.mat-select-panel {
+    border-radius: none;
+}
+
+.mat-select-value {
+    color:black;
+}
+
+.mat-option-text {
+    color:black;
+}
+
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+    font-weight: bold;
+}
+
+.mat-checkbox-outer-container {
+    color: black!important;
+}
+
+
+.mat-menu-content:not(:empty){
+    padding:0!important;
+    margin:0!important;
+    border-radius: 0!important;
+    background: white!important;
+}
+.mat-menu-content{
+    padding:0!important;
+    margin:0!important;
+    border-radius: 0!important;
+    background: white!important;
+}    
+.mat-nav-list{
+    padding:0!important;
+    margin:0!important;
+    border-radius: 0!important;
+}
+
+.mat-menu-panel {
+    border-radius: 0!important;
+    overflow :auto!important;
+    max-width:none!important;
+    min-width:none!important;
+    max-height:none!important;
+    width:auto!important;
+}
+
+body .ui-orderlist-controls {
+    display: none;
+}
+
+body .ui-orderlist .ui-orderlist-list .ui-orderlist-item {
+    padding: 0;
+}
+
+body .ui-orderlist .ui-orderlist-list {
+    width: 263px;
+    height: auto;
+    max-height: 200px;
+    margin: 1% 0;
+    margin-bottom: 7%;    
+    border : none;
+    border-bottom: 0.5px solid#c8c8c8;
+    border-top: 0.5px solid #c8c8c8;
+    @media only screen and (max-width: 375px) {
+        width: 150px;
+    }
+}
+
+// Fix CSS pour le thème bootstrap de primeng
+body .ui-state-active, body .ui-state-highlight {
+    background-color: #0275d8 !important;
+    color: #ffffff !important;
+}
+
+// Scrolling pour les dialogues : https://stackoverflow.com/questions/44220951/primeng-modal-p-dialog-not-scrollable
+p-dialog .ui-dialog {
+    overflow: auto;
+    max-height: 90%;
+}
+
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+    background-color: $primary;
+}
+
+.mat-progress-spinner circle, .mat-spinner circle {
+    stroke: $primary;
+}
+
+.client-content .mat-form-field-infix {
+    width: 100%!important;
+}
+
+body .ui-dataview .ui-dataview-content {
+    padding: 0.571em 1em;
+    border: 1px solid rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+    padding: 0.571em 1em;
+}
+
+.ui-dataview.ui-dataview-list > .ui-dataview-content > div.ui-g > div {
+    width: 100%;
+    text-align: center;
+}
+
+.ui-dataview .ui-dataview-emptymessage {
+    padding: .5em .75em;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-wrapper {
+    margin-bottom: 1em!important;
+}
+
+.person{
+    .mat-list-base .mat-list-item .mat-list-item-content {
+      color : black!important;
+    }
+}

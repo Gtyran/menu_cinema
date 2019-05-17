@@ -1,0 +1,19 @@
+<facture>
+	<idcommande></idcommande>
+	<client id=""></client>
+	<films>
+		<film id="">
+			<titre></titre>
+			<quantite></quantite>
+			<prix></prix>
+		</film>
+	</films>
+	<plats>
+		<plat id="">
+			<nom></nom>
+			<quantite></quantite>
+			<prix></prix>
+		</plat>
+	</plats>
+	<total></total>
+</facture>

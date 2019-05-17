@@ -1,0 +1,74 @@
+@import '../../assets/css/palette';
+@import '../../assets/css/custom-carousel.css'; 
+
+*, ::after, ::before  {
+    padding: 0;
+    margin : 0;
+}
+
+.carousel-content{
+    padding: 2% 10%;
+    padding-bottom: 5%;
+}
+
+mat-card {
+    width: 100%;
+    margin: 0;    
+    background: $white;
+    font-weight: lighter;
+    padding :0;
+
+    mat-card-header{
+        padding: 5% 2%;
+        padding-bottom: 2%;        
+        color : $black;
+        mat-card-title {
+            font-size: 17px;
+            font-weight: lighter;
+        }
+    }   
+    mat-card-content{
+        background: grey;
+    }
+}
+
+
+.item-container{    
+    width: 209px;        
+    .plat{        
+        img{          
+            width: 209px;  
+            min-height: 320px;
+            background:white;
+            cursor: pointer;         
+            @media only screen and (max-width: 560px) {
+                width: 349px;
+            }    
+        }
+    }
+
+    .film{        
+        img{          
+            width: 209px;  
+            height: 200px;
+            background:white;
+            cursor: pointer;         
+            @media only screen and (max-width: 560px) {
+                width: 349px;
+            }    
+        }
+    }
+
+    .info{
+        background: white;
+        color: black;
+        text-justify: auto;      
+        padding: 0 2%;  
+        button{
+            color:$teal!important;
+        }  
+        .prix{
+            color:grey;
+        }
+    }
+}

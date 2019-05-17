@@ -1,0 +1,125 @@
+<div class="content-panier">
+  <mat-card *ngIf="listPlats.length > 0 || listFilms.length > 0">
+      <!--HEADER-->
+      <mat-card-header>
+          <mat-card-title>Panier</mat-card-title>
+      </mat-card-header>
+      <hr>
+
+      <mat-card-content >
+
+        <!--ACHAT FILM-->
+        <div *ngIf="listFilms.length > 0">
+          <span>Films ( {{listFilms.length}} )</span>
+          <p-orderList [value]="listFilms" >
+
+              <ng-template let-film let-i="index" pTemplate="item" >
+                  <div class="ui-helper-clearfix" >
+                    <table >
+                      <tr>
+                        <!--IMAGE-->
+                        <td [routerLink]="['/film', film.id]">
+                          <img src="https://image.tmdb.org/t/p/w500{{film.photo}}"  class="image" width="48">
+                        </td>
+
+                        <td class="info">
+                          <table style="width: 100%">
+
+                            <tr >
+                              <td >
+                                  <!--NOM / PRIX-->
+                                  <div class="details-nom">{{film.nom}} 
+                                    <span style="float: right; font-size: 13px;font-weight: bolder;" >{{film.prix | currency:'EUR'}}</span> 
+                                  </div>                                                                   
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td> <!--DELETE BUTTON-->
+                                  <div fxLayout="row" fxLayoutAlign="end center" class="trash" >
+                                    <button class="butt" (click)="deleteF(i)">  <i class="pi pi-times" style="padding-left: 3px;font-size:20px"></i> </button>
+                                  </div>
+                              </td>
+                            </tr> 
+
+                        </table> 
+                        </td>
+
+                      </tr>
+                    </table>    
+                  </div>
+              </ng-template>     
+
+          </p-orderList>
+        </div>
+
+
+        <!--ACHAT Plat-->
+        <div *ngIf="listPlats.length > 0">
+          <span>Plats ( {{listPlats.length}} )</span>
+          <p-orderList [value]="listPlats" >
+
+              <ng-template let-plat let-i="index" pTemplate="item" >
+                  <div class="ui-helper-clearfix" >
+                    <table >
+                      <tr>
+                        <!--IMAGE-->
+                        <td routerLink="menu">
+                          <img src="assets/images/menu/{{plat.id}}.png"  class="image" width="48">
+                        </td>
+
+                        <td class="info">
+                          <table style="width: 100%">
+
+                            <tr >
+                              <td >
+                                  <!--NOM / QUANTITE-->
+                                  <div class="details-nom">{{plat.nom}}</div> 
+                                  <span style="padding-left: 2px;font-size:10px;color: gray;">Quantité {{plat.quantite}}</span>                                                                
+                              </td>
+                              <td>
+                                  <span style="float: right; font-size: 13px;font-weight: bolder;" >{{plat.prix * plat.quantite | currency:'EUR'}} </span> 
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td></td>
+                              <td> <!--DELETE BUTTON-->
+                                  <div fxLayout="row" fxLayoutAlign="end center" class="trash" >
+                                  <button class="butt" (click)="deleteP(i)"><i class="pi pi-times" style="padding-left: 3px;font-size:20px"></i></button>
+                                  </div>
+                              </td>
+                            </tr> 
+
+                        </table> 
+                        </td>
+
+                      </tr>
+                    </table>    
+                  </div>
+              </ng-template>     
+
+          </p-orderList>
+
+        </div>   
+        <hr>
+
+        <div class="total">Total : <span style="float: right">{{total | currency:'EUR'}}</span></div>
+
+        <div fxLayout="row" fxLayoutAlign="center center" >    
+          <button mat-button class="btn-valider" routerLink="valider-panier">VALIDER MON PANIER</button>
+        </div>
+
+      </mat-card-content> 
+    </mat-card>
+    
+    <mat-card style="padding-bottom:10%;" *ngIf="listPlats.length === 0 && listFilms.length === 0 ">
+      <mat-card-content >
+          <i >Votre panier est vide</i>
+      </mat-card-content>
+    </mat-card> 
+
+</div>
+      
+
+  

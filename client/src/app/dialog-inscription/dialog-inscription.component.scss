@@ -1,0 +1,74 @@
+@import '../../assets/css/palette';
+
+*, ::after, ::before  {
+    padding: 0;
+    margin : 0;
+}
+
+h1{
+    padding: 5% 5%;
+}
+
+td:last-child{
+    padding-left: 2%;
+}
+
+td:first-child{
+    padding-right: 2%;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+
+mat-card {
+    width: 100%;
+    margin: 0;
+    background: $white;
+    font-weight: lighter;
+    font-size: 30px;
+    padding :0;
+
+    mat-card-header{
+        padding: 5% 2%;
+        padding-bottom: 2%;
+        color : black;
+    }
+
+    form{
+        padding: 0% 5%;
+        width:100%;
+    }
+
+    button{
+        color:black;
+        margin-bottom: 2%;
+        margin-top: 10px;
+        padding: 0;
+        font-weight: lighter;
+    }
+
+    input{
+        color : $grey;
+        font-weight: lighter;
+        font-size: 16px;
+        border:transparent;
+        /* Firefox */
+        -moz-appearance: textfield;
+
+        /* Chrome */
+        &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin:0;
+        }
+
+        /* Opéra*/
+        &::-o-inner-spin-button {
+            -o-appearance: none;
+            margin: 0;
+        }
+
+    }
+}
+

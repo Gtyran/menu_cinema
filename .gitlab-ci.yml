@@ -1,0 +1,23 @@
+# Exemple general:              https://medium.com/devopslinks/beginner-friendly-introduction-to-gitlab-ci-cd-1c80ee5ba0ae
+# Angular + Travis + Firebase:  https://alligator.io/angular/angular-travis-ci-firebase-hosting/
+# Node + Gitlab CI + Surge:     https://salomvary.com/front-end-continuous-delivery.html
+
+# https://medium.com/letsboot/angular-continuous-delivery-deployment-with-gitlab-ci-stage-on-commit-and-prod-on-git-tag-151ce3c74619
+image: trion/ng-cli-karma
+
+cache:
+  paths:
+    - ./client/node_modules/
+
+deploy_stage:
+  stage: deploy
+  environment: Stage
+  only:
+    #- master
+    - clientIteration3
+  script:
+    - cd ./client/
+    - rm ./package-lock.json
+    - npm install
+    - ./node_modules/@angular/cli/bin/ng build --prod --progress false
+    - ./node_modules/.bin/surge -p dist/client --domain menu-cinema.surge.sh

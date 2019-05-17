@@ -1,0 +1,191 @@
+@import '../../../assets/css/palette';
+
+.movie {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: 0;
+    margin-top: 8px;
+    padding: 20px;
+    height: auto;
+    background-position: top;
+    background-size: cover;
+    color: $white;
+    text-align: left;
+    @media only screen and (min-width: 731px) {
+        min-height: 500px;
+    }
+
+    &--background {
+        .image-rotator {
+            position: absolute;
+            top: 0;
+            left: 30%;
+            bottom: 0;
+            right: 0;
+            width: 70%;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+
+            @media only screen and (min-width: 731px) {
+                background-position: initial;
+            }
+        }
+        
+        .vignette {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 30%;
+            background: $black;
+            z-index: 2;
+        
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 100%;
+                bottom: 0;
+                width: 100%;
+                background-image: linear-gradient(to right,$black,transparent);
+            }
+        }
+    }
+
+    &__head {
+        display: inherit;
+        z-index: 2;
+
+        .btn-back {
+            border: none;
+            background: transparent;
+            color: $white;
+            cursor: pointer;
+        }
+
+        h1 {
+            color: $white;
+            text-align: left !important;
+        }
+    }
+    &__body {
+        z-index: 2;
+        .mat {
+        &-green {
+            color: $green;
+        }
+        &-red {
+            color: $primary;
+        }
+        &-yellow {
+            color: $yellow;
+        }
+        &-teal {
+            color: $teal;
+        }
+        }
+        .movie {
+
+            &--infos {
+                display: flex;
+                align-items: center;
+
+                span {
+                    margin: 0 5px 0 0;
+                }
+                .mat-icon {
+                    width: 20px;
+                    font-size: 20px;
+                }
+            }
+        &--overview {
+            font-weight: normal;
+            text-align: justify;
+            width: 30%;
+        }
+        &--genre {
+            ul {
+                padding: 0;
+
+                li {
+                    display: inline-block;
+                    padding: 0 5px 0 0;
+
+                    &::after {
+                        content: '•';
+                        color: $primary;
+                    }
+                    &:last-child:after {
+                        content: '';
+                    }
+                }
+            }
+
+            a{
+                color : $primary;
+            }
+        }
+        &--actions {
+            button {
+                padding: 0;
+            }
+        }
+        }
+    }
+}
+
+
+.movie {
+    &__tab {
+        .movie {
+            &--cast {
+                a.mat-list-item {
+                    padding-left: 3%;
+                    //display: inline;
+                    &:hover {
+                        background: $background;
+                    }
+                }
+                /deep/ .mat-list-text {
+                    h3 {
+                        color: $primary;
+                        text-align: left;
+                    }
+                
+                    p {
+                        color: $grey;
+                        text-align: left;
+                    }
+                }
+            }
+            &--trailer {
+                margin: 30px 0;
+
+                iframe {
+                    display: block;
+                    margin: .625rem auto;
+                
+                    @media only screen and (max-width: 731px) {
+                        width: 100%;
+                    }
+                }
+            }
+            &--similar {
+                h3 {
+                    color: $primary;
+                }
+            }
+        }
+    }
+}
+
+small {
+    padding: 5px;
+}
+
+.loading-shade{
+    padding-top: 30%;    
+    margin-bottom: 50%;
+}

@@ -1,0 +1,154 @@
+<mat-card>
+
+    <!--HEADER-->
+    <mat-card-header>
+        <h1 mat-card-title>{{titreDialog | uppercase}}</h1>
+    </mat-card-header>
+    <hr>
+
+    <mat-card-content>
+        <mat-dialog-content>  
+
+        <!--Formulaire d'inscription-->
+        <mat-horizontal-stepper  linear labelPosition="bottom" #stepper>
+
+            <mat-step [stepControl]="firstFormGroup">                
+                <!--STEP COORDONNEES-->
+                <form [formGroup]="firstFormGroup">
+                    <ng-template matStepLabel>Coordonnées</ng-template>
+                   
+                    <table class="example-full-width" cellspacing="3">
+                        <tr>
+
+                            <td><!--Nom-->
+                                <mat-form-field class="example-full-width" >
+                                    <mat-label>Nom</mat-label>
+                                        <input matInput type="text" id="nom" name="nom" [(ngModel)]="data.user.nom" 
+                                        placeholder="Nom" formControlName="nom" required/>
+                                </mat-form-field>
+                            </td>
+
+                            <td><!--Prénom-->
+                                <mat-form-field class="example-full-width" >
+                                    <mat-label>Prénom</mat-label>
+                                    <input matInput type="text" id="prenom" name="prenom" [(ngModel)]="data.user.prenom"
+                                        placeholder="Prénom" formControlName="prenom" required/>
+                                </mat-form-field>
+                            </td>
+
+                        </tr>
+                    </table>    
+
+                    <p><!--Tel-->            
+                        <mat-form-field class="example-full-width" >
+                            <mat-label>Télephone</mat-label>
+                            <input matInput type="number" pattern="-?(\d+|\d+\.\d+|\.\d+)([eE][-+]?\d+)?" id="tel" name="tel" [(ngModel)]="data.user.tel" 
+                                placeholder="Télephone"  formControlName="tel"/>
+                        </mat-form-field>
+                    </p>       
+                    
+                    <p><!--Email-->            
+                        <mat-form-field class="example-full-width" >
+                            <mat-label>Email</mat-label>
+                            <input matInput type="email" id="email" name="email" pattern='^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'
+                                    placeholder="Email" [(ngModel)]="data.user.email" formControlName="email" required/>
+                            <mat-error *ngIf="!firstFormGroup.controls['email'].valid && firstFormGroup.controls['email'].touched">
+                                l'adresse email est invalide.
+                            </mat-error>
+                        </mat-form-field>
+                    </p> 
+                     
+                    <!--SUIVANT-->
+                    <div fxLayout="row" fxLayoutAlign="end end">
+                        <button mat-button matStepperNext ><mat-icon>navigate_next</mat-icon></button>
+                    </div>
+                </form>
+            </mat-step>
+
+            <mat-step [stepControl]="secondFormGroup" >    
+                <!--STEP ADRESSE-->            
+                <form [formGroup]="secondFormGroup">
+                    <ng-template matStepLabel >Adresse</ng-template>
+
+                    <p>
+                        <!--Rue-->                            
+                        <mat-form-field class="example-full-width" >
+                            <mat-label>Rue</mat-label>
+                            <input matInput type="text" id="rue" placeholder="Rue" name="rue"
+                                    formControlName="rue"  [(ngModel)]="adresse.rue"/>
+                        </mat-form-field>                     
+                    </p>
+            
+                    <table class="example-full-width" cellspacing="3" >
+                        <tr>
+                            <td><!--Code Postal-->
+                                <mat-form-field class="example-full-width" >
+                                    <mat-label>Code postal</mat-label>
+                                    <input matInput #postalCode type="text" pattern="[0-9]{5}" maxlength="5" 
+                                        id="codepostal" name="codepostal" [(ngModel)]="adresse.codePostal" formControlName="codepostal"/>
+                                    <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
+                                </mat-form-field>
+                            </td>
+
+                            <td><!--Ville-->
+                                <mat-form-field class="example-full-width" >
+                                    <mat-label>Ville</mat-label>
+                                    <input matInput type="text" id="ville" placeholder="Ville" name="ville"
+                                    [(ngModel)]="adresse.ville" formControlName="ville"/>
+                                </mat-form-field>  
+                            </td>                   
+
+                        </tr>
+                    </table>
+
+                    <p><!--Etage/info conplémentaire-->            
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Complémentaire</mat-label>
+                            <input matInput type="text" id="compl" name="compl"
+                            [(ngModel)]="adresse.compl" placeholder="Compl" formControlName="compl" />
+                        </mat-form-field>
+                    </p> 
+                    
+                    <!--PRECEDENT/SUIVANT-->
+                    <div fxLayout="row" fxLayoutAlign="space-between center"  >
+                        <button mat-button matStepperPrevious ><mat-icon>navigate_before</mat-icon></button>
+                        <button mat-button matStepperNext (click)="concatenation()"><mat-icon>navigate_next</mat-icon></button>
+                    </div>
+                </form>
+            </mat-step>
+
+            <mat-step>                
+                <form [formGroup]="thirdFormGroup">
+                    <!--MOT DE PASSE-->
+                    <ng-template matStepLabel >Mot de Passe</ng-template>                    
+                                        
+                    <mat-form-field class="example-full-width" >
+                        <mat-label>Mot de Passe</mat-label>
+                        <input matInput type="password" placeholder="Mot de Passe" name="password" minlength="8" 
+                        [(ngModel)]="data.password"  formControlName="password" required/>
+                        <mat-error *ngIf="!thirdFormGroup.controls['password'].valid && thirdFormGroup.controls['password'].touched">
+                            le mot de passe doit comporter au moins 8 caractères.
+                        </mat-error>
+                    </mat-form-field>  
+                    
+                    <!--PRECEDENT/SUIVANT-->
+                    <div fxLayout="row" fxLayoutAlign="space-between center"  [style.padding-top.px]="115">
+                        <button mat-button matStepperPrevious><mat-icon>navigate_before</mat-icon></button>      
+                        <button mat-button matStepperNext (click)="finisalition()" [disabled]="!thirdFormGroup.valid "><mat-icon>check_circle_outline</mat-icon></button>                
+                    </div>
+
+                </form>
+            </mat-step>
+
+        </mat-horizontal-stepper>
+        
+    </mat-dialog-content>    
+
+   
+    </mat-card-content>
+    
+</mat-card>
+        
+        
+
+    

@@ -1,0 +1,32 @@
+@import "../../assets/vendor/bootstrap/css/bootstrap.min.css";
+@import "../../assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css";
+@import "../../assets/vendor/animate/animate.css";
+@import "../../assets/vendor/css-hamburgers/hamburgers.min.css";
+@import "../../assets/vendor/select2/select2.min.css";
+@import "../../assets/css/util.css";
+@import "../../assets/css/main.css";
+
+video#bgvid {
+  position: fixed; right: 0; bottom: 0;
+  min-width: 100%; min-height: 100%;
+  width: auto; height: auto; z-index: -100;
+  background-image: url('../../assets/images/login-background-3.jpg') no-repeat;
+  background-size: cover;
+}
+/*
+@media screen and (max-device-width: 800px) {
+	html { background-image: url('../../assets/images/login-background-3.jpg') #000 no-repeat center center fixed; }
+	#bgvid { display: none; }
+}*/
+
+.compte-title{
+  font-size: large;
+  color: white;
+  display: block;
+  padding : 5% 10%;
+}
+
+.loading-shade{
+  padding-top: 30%;
+  margin-bottom: 50%;
+}

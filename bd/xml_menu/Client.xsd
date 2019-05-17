@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+
+<xs:schema version="1.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.ujf-grenoble.fr/l3m"
+           xmlns:cli="http://www.ujf-grenoble.fr/l3m"
+           elementFormDefault="qualified">
+    
+    <xs:element name="client" type="cli:Client"/>
+    
+    <xs:complexType name="Client">
+        <xs:sequence>
+            <xs:element name="id" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="nom" type="cli:Chaine" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="prenom" type="cli:Chaine" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="photo" type="cli:Photo" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="email" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="tel" type="cli:Tel" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="adresse" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="points" type="cli:Points" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+        
+    <xs:simpleType name="Chaine">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[\p{L}\p{Zs}\p{S}\p{Pd}\*ç\*']+"/>
+        </xs:restriction>
+    </xs:simpleType>    
+    
+    <xs:simpleType name="Mail">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[\p{L}\p{Zs}\p{S}\p{Pd}\*ç\*']+"/>
+        </xs:restriction>
+    </xs:simpleType>    
+    
+    <xs:simpleType name="Photo">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\p{L}+\.(png|jpeg|jpg)"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="Tel">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="0[0-9]{9}"/>
+        </xs:restriction>
+    </xs:simpleType>   
+    
+    <xs:simpleType name="Points">
+        <xs:restriction base="xs:int">
+            <xs:minInclusive value="0"/>
+        </xs:restriction>
+    </xs:simpleType>   
+    
+
+</xs:schema>

@@ -1,0 +1,129 @@
+<!--BARRE DE NAVIGATION-->
+<div class="main" [class.example-is-mobile]="mobileQuery.matches" fxFlex>
+
+  <!--TOOLBAR--> 
+  <mat-toolbar class="toolbar">
+    <button mat-icon-button (click)="snav.toggle()" fxShow="true" fxHide.gt-sm="true"><mat-icon>menu</mat-icon></button>  
+
+    <!--ENTETE-->
+    <img class="logo" src="assets/images/logo_MenuCinema.png" >
+    <a routerLink="login" *ngIf="!authService.isAuth"><h1 class="titre">{{tittle}}</h1></a>
+    <div *ngIf="authService.isAuth"><h1 class="titre">{{tittle}}</h1></div>
+ 
+    <!--LIST ITEM--> 
+    <div fxFlex fxLayout fxLayoutAlign="end center" >
+
+      <!--ROUTER FILMS/RESTAURANT-->
+      <div class="itemTool" *ngIf="authService.isAuth" fxFlex fxShow="true" fxHide.lt-md="true">
+          <a routerLink="cinéma/1">Films</a>
+          <a routerLink="menu" >Restaurant</a>
+      </div>
+    
+       <!--
+      <span class="fill-remaining-space" *ngIf="!authService.isAuth">
+          <button mat-icon-button routerLink="login"><mat-icon>person</mat-icon></button>
+      </span>  -->
+
+      <!--ITEM PERSON/PANIER-->
+      <span class="fill-remaining-space" *ngIf="authService.isAuth" >         
+        <button mat-icon-button [matMenuTriggerFor]="compte" [style.margin-right.%]="10"><mat-icon>person</mat-icon></button>        
+        <button mat-icon-button [matMenuTriggerFor]="panier" (click)="getPanierItem()" ><mat-icon>shopping_cart</mat-icon></button>
+
+        <!--CONTENT PANIER-->       
+        <mat-menu #panier="matMenu" > 
+            <app-panier [listFilms]="filmList" [listPlats]="platList" [total]="total"></app-panier>
+        </mat-menu>
+
+        <!--CONTENT PERSON-->
+        <mat-menu #compte="matMenu" class="person">  
+          <mat-nav-list>
+            <a mat-list-item  routerLink="client">
+                <span class="nav-caption">Mon compte</span>
+            </a>
+            <a mat-list-item routerLink="commande">
+                <span class="nav-caption" >Mes commandes</span>
+            </a>
+            <a mat-list-item (click)="logout()">
+                <span class="nav-caption" >Déconnexion</span>
+            </a>
+          </mat-nav-list>  
+        </mat-menu>
+
+      </span>
+    </div> <!--END LIST--> 
+
+  </mat-toolbar>
+  
+  
+  <!--SIDENAV-->
+  <mat-sidenav-container class="sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0" >
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+      [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+    
+      <!--ACCUEIL-->
+      <mat-nav-list class="menu-content">
+
+        <!--ROUTER LOGIN-->
+        <a mat-list-item *ngIf="!authService.isAuth" routerLink="login" >
+            <mat-icon>person</mat-icon><span class="nav-caption">Connexion</span>
+        </a>
+        
+        <div *ngIf="authService.isAuth">  
+
+          <!--ROUTER CLIENT-->          
+          <a mat-list-item class="active" routerLink="client">
+              <span class="nav-caption" >ESPACE CLIENT</span>
+          </a>    
+
+          <!--ROUTER CLIENT - PROFIL-->
+          <a mat-list-item routerLink="client">
+            <mat-icon>person</mat-icon><span class="nav-caption">Mon Compte</span>
+          </a> 
+
+          <!--HISTORIQUE DES COMMANDES-->
+          <a mat-list-item routerLink="commande">
+            <mat-icon></mat-icon><span class="nav-caption">Mes Commandes</span>
+          </a> 
+
+          <!--MENU-->
+          <a mat-list-item routerLink="menu">
+            <mat-icon></mat-icon><span class="nav-caption">Restaurant</span>
+          </a> 
+
+          <!--CINEMA-->
+          <a mat-list-item routerLink="cinéma/1">
+            <mat-icon></mat-icon><span class="nav-caption">Cinéma</span>
+          </a> 
+
+          <!--DECONNECTION-->
+          <a mat-list-item (click)="logout()">
+              <mat-icon>exit_to_app</mat-icon><span class="nav-caption">Déconnexion</span>
+          </a>
+        </div>
+
+      </mat-nav-list>
+
+    </mat-sidenav>
+
+    <!--CONTENT--> 
+    <mat-sidenav-content>
+      <main> 
+        <router-outlet ></router-outlet>
+      </main>
+      
+      <!--FOOTER-->
+      <app-footer></app-footer>
+
+    </mat-sidenav-content>  
+    
+  </mat-sidenav-container>
+</div>
+
+<script>
+    // Détection du support
+    if(typeof localStorage!='undefined') {
+    } else {
+      alert("sessionStorage n'est pas supporté");
+    }
+</script>
+

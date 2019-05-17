@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <jdbc>
+        <serveur>ADRESSE_SERVEUR</serveur>
+        <port>PORT_SERVEUR</port>
+        <db>NOM_BD</db>
+        <username>NOM_UTILISATEUR</username>
+        <password>MOT_DE_PASSE</password>
+    </jdbc>
+</config>

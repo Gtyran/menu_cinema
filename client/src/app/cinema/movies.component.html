@@ -1,0 +1,75 @@
+<div class="loading-shade" *ngIf="isLoading" fxLayoutAlign="center center">
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+</div>
+
+<div *ngIf="!isLoading" [style.padding-bottom.%]="10">
+
+    <!--LOCATION BACK-->
+    <div class="head">
+        <button class="btn-back" (click)="back()">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+        <span class="title">Cinéma</span>
+    </div>
+
+    <!--<span class="sous-title" >Top Films</span>-->
+
+    <!--CAROUSEL DES FILMS POPULAIRES-->
+    <div class="carousel-content">
+        <p-carousel headerText="Films Populaires" [value]="listPopular?.results" [numVisible]="4"
+                    [easing]="easeOutStrong" [pageLinks]="7" [autoplayInterval]="7000" [circular]="true"
+                    [responsive]="true">
+            <ng-template let-popular pTemplate="item">
+                <a [routerLink]="['/film', popular.id]" fxLayout="row" fxLayoutAlign="center center">
+                    <img class="image" src="https://image.tmdb.org/t/p/w500{{popular.poster_path}}" width="60%">
+                </a>
+            </ng-template>
+        </p-carousel>
+    </div>
+
+    <!--BARRE DE RECHERCHE-->
+    <div class="navigation--search" fxLayout="row" fxLayoutAlign="center center">
+        <mat-form-field appearance="outline">
+            <mat-label>Rechercher un film</mat-label>
+            <input matInput #search type="text" (keyup.enter)="searchMovies(search.value); search.value=''">
+            <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+    </div>
+
+    <!--FILTRAGE-->
+    <div fxLayout="row" fxLayoutAlign="end end" [style.padding-right.%]="10">
+        <div class="header item">
+            <span>Filtrer Par &nbsp;:&nbsp;</span>
+        </div>
+
+        <a class="item trier" (click)="sortMovies('date')">
+            <span>Date&nbsp;</span>
+        </a>
+
+        <a class="item trier" (click)="sortMovies('popularité')">
+            <span>|&nbsp;Popularité</span>
+        </a>
+    </div>
+
+    <!--LISTE DES FILMS-->
+    <span class="sous-title">{{affichage}}</span>
+    <app-list-film *ngIf="!searched" [movieList]=affichageList></app-list-film>
+
+    <!--afficher les resultats de recherche pour les films-->
+    <app-list-film *ngIf="searched" [movieList]=listSeach></app-list-film>
+
+    <!--afficher les resultats de recherche pour les acteurs-->
+    <div *ngIf="searched">
+        <hr>
+        <span class="sous-title">{{affResPerson}}</span>
+        <list-person [personList]="listPersonSearch"></list-person>
+    </div>
+
+    <!--afficher les resultats pour les genres-->
+
+    <div class="pagination" fxLayout="row" fxLayoutAlign="center center">
+        <p-paginator *ngIf="!isLoading" [rows]="1" totalRecords={{listUpcoming.total_pages}}
+                     (onPageChange)="paginate($event)" [class]="">
+        </p-paginator>
+    </div>
+</div>

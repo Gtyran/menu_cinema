@@ -1,0 +1,49 @@
+<div class="body" *ngIf="Plats; else noData" >
+
+    <div class="plats-container" *ngFor="let plat of Plats">
+  
+      <mat-card>
+        <mat-card-content >         
+          
+          <div class="info">
+            <div class="image">
+                <img class="ui tiny image" src="assets/images/menu/{{plat?.id}}.png">
+            </div>
+
+            <div fxFill >
+              <div class="details" >
+                <div fxFlex="80"> {{plat?.nom}}
+                    <!--PRIX-->
+                  <div class="prix">
+                      {{plat?.prix | currency:'EUR'}}
+                  </div>
+                </div>
+                    
+                  <!--AJOUT DANS LE PANIER-->
+                <div  fxFlex="20">                  
+                  <button (click)="pushplatsInPanier(plat)" >
+                      <mat-icon>add_shopping_cart</mat-icon>
+                  </button>          
+                </div>
+              </div>
+              
+
+              <!--INGREDIENTS-->
+                <div class="ingredient-item" *ngFor="let ingredient of plat?.ingredients; last as isLast">
+                  <span>{{ingredient | lowercase}}</span>    
+                  <span *ngIf="!isLast">,</span>            
+              </div>              
+  
+            </div>
+          </div>
+    
+        </mat-card-content>    
+      </mat-card>
+  
+    </div>
+  </div>
+  
+  <ng-template #noData>
+    <i>Vide</i>
+  </ng-template>
+  

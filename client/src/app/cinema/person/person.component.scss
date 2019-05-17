@@ -1,0 +1,101 @@
+@import '../../../assets/css/palette';
+
+.btn-back {
+    position: absolute;
+    top: 50px;
+    left: 20px;
+    border: none;
+    background: transparent;
+    color: $white;
+    cursor: pointer;
+}
+
+.loading-shade{
+    padding-top: 30%;    
+    margin-bottom: 50%;
+}
+
+.person {
+    padding: 20px;
+
+    mat-tab-group p:nth-child(3) {
+        color: $primary;
+    }
+    p {
+        color: $white;
+        font-weight: lighter;        
+        padding-right: 5%;
+        padding-left: 5%;
+    }
+    span{        
+        font-weight: normal;
+        font-size: 30px;
+        padding: 20px 20px;
+        display : flex;
+        color : $primary;
+        padding-left: 5%;
+    }
+
+    
+    .biographie{
+        text-align: justify;
+    }
+
+        
+    .profil{
+        text-align: -webkit-center;
+    }
+
+}
+
+
+.body {
+    display: flex;
+    position: relative;
+    margin: 0;
+    margin-top: 15px;
+    height: auto;
+    flex-wrap: wrap;
+    justify-content: center;    
+    
+    @media only screen and (min-width: 731px) {
+        min-height: 500px;
+    }
+
+    mat-card{
+        max-width: 200px;
+        padding: 0;   
+        
+    }
+    
+    mat-card-content{
+        background: $white;
+    }
+
+    
+    .image{
+        width: 100%;
+        overflow: hidden;
+        min-height: 300px;        
+        cursor: pointer;    
+
+        @media only screen and (min-width: 731px) {
+            background-position: initial;
+        }
+    }
+
+    
+    .movies-container{
+        margin:  10px 15px 15px 10px;
+    }   
+
+    p{
+        text-align: center;
+        margin-bottom:0;
+    }
+
+    p:last-child{
+        padding-bottom: 10px;
+    }
+}
+

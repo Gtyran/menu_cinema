@@ -1,0 +1,86 @@
+<!----------------------------------Affichage de la facture du client ------------------------------------->
+
+<mat-card class="example-card" fxLayouAlign="center center">
+    <mat-card-content>
+
+    </mat-card-content>
+
+    <div>
+        <h2>MenuCinéma</h2>
+        <div>Contact : <a href="mailto:MenuCinema@gmail.com">MenuCinema@gmail.com</a></div>
+    </div>
+    <br><br>
+    <hr class="rgba-white-light" style="margin: 0 3%;">
+    <br>
+
+    <main>
+        <div>
+            <div class="date">Date de facturation: {{facture.date | date:'medium'}}</div>
+            <br>
+        </div>
+
+        <hr class="rgba-white-light" style="margin: 0 3%;">
+        <br>
+
+        <div class="clearfix">
+            <div>
+                <div class="to">Facturé à:</div>
+                <h2 class="name">{{client.nom}} {{client.prenom}}</h2>
+                <div class="address">{{client.adresse}}</div>
+                <div class="email">Adresse électronique: <a [href]="client.email">{{client.email}}</a></div>
+            </div>
+            <br><br>
+        </div>
+        <table align="center" border="1" cellspacing="6" cellpadding="10">
+            <thead>
+                <tr>
+                    <th class="no">#</th>
+                    <th class="desc">DESCRIPTION</th>
+                    <th class="unit">PRIX UNITAIRE</th>
+                    <th class="qty">QUANTITÉ</th>
+                    <th class="total">TOTAL</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let f of filmsDetails">
+                <td class="no"><img width="100%" src="https://image.tmdb.org/t/p/original{{f.poster_path}}"></td>
+                <td class="desc"><h3>Films : {{f.title}} </h3>
+                    <span *ngFor="let g of f.genres">{{g.name}}&nbsp;</span></td>
+                <td class="unit">{{forfaitFilm}}€</td>
+                    <td class="qty">1</td>
+                <td class="total">{{forfaitFilm}}€</td>
+                </tr>
+                <tr *ngFor="let p of platsDetails; let i = index;">
+                    <td class="no"><img width="100%" src="assets/images/menu/{{p?.id}}.png"></td>
+                    <td class="desc"><h3>Plat : {{p?.nom}}</h3></td>
+                    <td class="unit">{{p?.prix}}€</td>
+                    <td class="qty">{{occPlats[i]}}</td>
+                    <td class="total">{{occPlats[i] * p?.prix}}€</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2"></td>
+                    <td colspan="2"><i>Reduction</i></td>
+                    <td><i>{{facture.reduction}}€</i></td>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                    <td colspan="2"><i>Sous-total</i></td>
+                    <td><i>{{facture.sousTotal}}€</i></td>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                    <td colspan="2">Total</td>
+                    <td>{{facture.prixTotal}}€</td>
+                </tr>
+            </tfoot>
+        </table>
+        <br> <br>
+        <div id="thanks">Merci pour votre achat !</div>
+    </main>
+    <p-button label="Fermer" (click)="onHide()"></p-button>
+   <!-- <p-button label="Fermer" (click)="dPDF()"></p-button>-->
+
+</mat-card>
+

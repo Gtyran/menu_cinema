@@ -1,0 +1,97 @@
+@import '../../assets/css/palette';
+
+*, ::after, ::before  {
+    color : #5c5959;
+    padding: 0;
+    margin : 0;
+}
+
+.loading-shade{
+    padding-top: 30%;
+    margin-bottom: 50%;
+}
+
+mat-card {
+    width: 70%;
+    margin: 1em auto;    
+    background: $white;
+    font-weight: lighter;
+    font-size: larger;
+    color : #5c5959;    
+    padding :0;
+    margin-top: 5%;
+
+    mat-card-header{
+        background: #f4f6f6;
+        padding: 5% 2%;
+        padding-bottom: 2%;
+        mat-card-title{
+            color : black;
+        }
+    }   
+    
+    form{
+        padding: 5% 10%;
+        padding-bottom: 1px;
+        width:100%;
+    }
+
+    button{
+        background: #28a745;
+        color: white;
+        width: 230px;
+        margin-bottom: 2%;
+        font-weight: lighter;
+        font-size: 13px;
+        mat-icon{
+            color:$white;
+        }
+    }
+    input{
+        color : $grey;
+        font-weight: lighter;
+        font-size: 16px;
+        border:transparent;
+    }
+  }
+  
+
+.photo {
+    img { 
+        width: 100%;
+        margin-bottom: 5%;
+    }
+}
+
+.file{
+    padding: 0 30%;
+    padding-left: 0;
+    width: 100%;
+    margin-bottom: 15%; 
+    button{
+        width: 100%;
+        border: none;
+        background: $primary;
+        height: 25px;
+        border-radius: 2px;
+        font-weight: lighter;
+        font-size: small;
+        color : $white;
+        @media only screen and (max-width: 650px) {
+            font-size: 10px;
+         }
+    }   
+}
+
+.uploadfile{
+    width:"100%";
+    input{
+        color: transparent;
+        font-size: small;
+        margin-bottom: 5%;
+    }
+}
+
+.name-profile{
+    width: 100;
+}

@@ -1,0 +1,28 @@
+@import '../../assets/css/palette';
+
+.loading-shade{
+    padding-top: 30%;
+    margin-bottom: 50%;
+}
+
+.ui-button {
+  margin: 2px;
+}
+
+.ui-dataview-header .ui-widget-header .ui-corner-top {
+  padding: 0;
+  border: 0;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.ui-dataview-header {
+  display: none;
+}
+
+.loading-shade{
+  padding-top: 30%;
+}
+
+h3 {
+  text-align: center;
+}

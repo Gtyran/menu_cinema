@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+- l'enumération à editer pour chaque nouveau ingrédients
+-->
+
+
+<xs:schema version="1.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.ujf-grenoble.fr/l3m"  
+           xmlns="http://www.ujf-grenoble.fr/l3m"  
+           elementFormDefault="qualified">
+        
+    <xs:simpleType name="Ingredient">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Tomate"/>
+            <xs:enumeration value="Champignon"/>
+            <xs:enumeration value="Mozzarella"/>
+            <xs:enumeration value="Patate"/>
+            <xs:enumeration value="Saumon"/>
+            <xs:enumeration value="Boeuf"/>
+            <xs:enumeration value="Bacon"/>
+            <xs:enumeration value="Thon"/>
+            <xs:enumeration value="Oeuf"/>
+            <xs:enumeration value="Salade"/>
+            <xs:enumeration value="Emmental"/>
+            <xs:enumeration value="Chocolat"/>
+            <xs:enumeration value="Fraise"/>
+            <xs:enumeration value="Banane"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<ns1:plats
+    xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+    xmlns:ns1='http://www.ujf-grenoble.fr/l3m'
+    xsi:schemaLocation='http://www.ujf-grenoble.fr/l3m Plats.xsd'>
+    <ns1:plat>
+        <ns1:id>1</ns1:id>
+        <ns1:type>Entree</ns1:type>
+        <ns1:nom>Quiche lorraine légère</ns1:nom>
+        <ns1:prix>7.24</ns1:prix>
+        <ns1:photo>1.JPEG</ns1:photo>
+        <ns1:ingredients>beurre allégé mou</ns1:ingredients>
+        <ns1:ingredients>café de sel</ns1:ingredients>
+        <ns1:ingredients>oeufs</ns1:ingredients>
+        <ns1:ingredients>lardons de volaille</ns1:ingredients>
+        <ns1:ingredients>emmental râpé allégé</ns1:ingredients>
+        <ns1:ingredients>noix de muscade</ns1:ingredients>
+    </ns1:plat>
+    <ns1:plat>
+        <ns1:id>1</ns1:id>
+        <ns1:type>Entree</ns1:type>
+        <ns1:nom>Quiche lorraine légère</ns1:nom>
+        <ns1:prix>7.24</ns1:prix>
+        <ns1:photo>1.JPEG</ns1:photo>
+        <ns1:ingredients>beurre allégé mou</ns1:ingredients>
+        <ns1:ingredients>café de sel</ns1:ingredients>
+        <ns1:ingredients>oeufs</ns1:ingredients>
+        <ns1:ingredients>lardons de volaille</ns1:ingredients>
+        <ns1:ingredients>emmental râpé allégé</ns1:ingredients>
+        <ns1:ingredients>noix de muscade</ns1:ingredients>
+    </ns1:plat>
+    <ns1:plat>
+        <ns1:id>1</ns1:id>
+        <ns1:type>Entree</ns1:type>
+        <ns1:nom>Quiche lorraine légère</ns1:nom>
+        <ns1:prix>7.24</ns1:prix>
+        <ns1:photo>1.JPEG</ns1:photo>
+        <ns1:ingredients>beurre allégé mou</ns1:ingredients>
+        <ns1:ingredients>café de sel</ns1:ingredients>
+        <ns1:ingredients>oeufs</ns1:ingredients>
+        <ns1:ingredients>lardons de volaille</ns1:ingredients>
+        <ns1:ingredients>emmental râpé allégé</ns1:ingredients>
+        <ns1:ingredients>noix de muscade</ns1:ingredients>
+    </ns1:plat>
+
+</ns1:plats>
